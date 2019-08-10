@@ -69,8 +69,6 @@ class OctoTree
   
   void Draw()
   {
-    
-    
     if (divided)
     {
       upnorthwest.Draw();
