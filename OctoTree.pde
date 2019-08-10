@@ -40,6 +40,35 @@ class OctoTree
     downsoutheast = new OctoTree(new Box(new PVector(pos.x - h.x, pos.y + h.y, pos.z - h.z), h), capacity);
     
     divided = true;
+    
+    for (PVector p : points)
+    {
+      if (upnorthwest.boundaries.Contains(p))
+      {
+        upnorthwest.Insert(p);
+      } else if (upnortheast.boundaries.Contains(p))
+      {
+        upnortheast.Insert(p);
+      } else if (upsouthwest.boundaries.Contains(p))
+      {
+        upsouthwest.Insert(p);
+      } else if (upsoutheast.boundaries.Contains(p))
+      {
+        upsoutheast.Insert(p);
+      } else if (downnorthwest.boundaries.Contains(p))
+      {
+        downnorthwest.Insert(p);
+      } else if (downnortheast.boundaries.Contains(p))
+      {
+        downnortheast.Insert(p);
+      } else if (downsouthwest.boundaries.Contains(p))
+      {
+        downsouthwest.Insert(p);
+      } else if (downsoutheast.boundaries.Contains(p))
+      {
+        downsoutheast.Insert(p);
+      }
+    }
   }
   
   void Insert(PVector point)
@@ -94,15 +123,14 @@ class OctoTree
         box(boundaries.dimensions.x, boundaries.dimensions.y, boundaries.dimensions.z);
         root = false;
       }
-    }
-    
-    stroke(vertexColour);
-    
-    for (PVector p : points)
-    {
-      translate(-p.x, -p.y, -p.z);
-      sphere(3);
-      translate(p.x, p.y, p.z);
+      
+      stroke(vertexColour);
+      for (PVector p : points)
+      {
+        translate(-p.x, -p.y, -p.z);
+        sphere(3);
+        translate(p.x, p.y, p.z);
+      }
     }
   }
 }
