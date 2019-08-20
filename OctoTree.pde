@@ -1,4 +1,5 @@
 boolean root = true;
+int insertCount = 0;
 
 class OctoTree
 {
@@ -30,14 +31,14 @@ class OctoTree
     
     PVector pos = boundaries.position;
     
-    upnorthwest = new OctoTree(new Box(new PVector(pos.x + h.x, pos.y - h.y, pos.z + h.z), h), capacity);
-    upnortheast = new OctoTree(new Box(new PVector(pos.x + h.x, pos.y + h.y, pos.z + h.z), h), capacity);
-    upsouthwest = new OctoTree(new Box(new PVector(pos.x - h.x, pos.y - h.y, pos.z + h.z), h), capacity);
-    upsoutheast = new OctoTree(new Box(new PVector(pos.x - h.x, pos.y + h.y, pos.z + h.z), h), capacity);
-    downnorthwest = new OctoTree(new Box(new PVector(pos.x + h.x, pos.y - h.y, pos.z - h.z), h), capacity);
-    downnortheast = new OctoTree(new Box(new PVector(pos.x + h.x, pos.y + h.y, pos.z - h.z), h), capacity);
-    downsouthwest = new OctoTree(new Box(new PVector(pos.x - h.x, pos.y - h.y, pos.z - h.z), h), capacity);
-    downsoutheast = new OctoTree(new Box(new PVector(pos.x - h.x, pos.y + h.y, pos.z - h.z), h), capacity);
+    upnorthwest = new OctoTree(new Box(new PVector(pos.x + h.x / 2, pos.y - h.y / 2, pos.z + h.z / 2), h), capacity);
+    upnortheast = new OctoTree(new Box(new PVector(pos.x + h.x / 2, pos.y + h.y / 2, pos.z + h.z / 2), h), capacity);
+    upsouthwest = new OctoTree(new Box(new PVector(pos.x - h.x / 2, pos.y - h.y / 2, pos.z + h.z / 2), h), capacity);
+    upsoutheast = new OctoTree(new Box(new PVector(pos.x - h.x / 2, pos.y + h.y / 2, pos.z + h.z / 2), h), capacity);
+    downnorthwest = new OctoTree(new Box(new PVector(pos.x + h.x / 2, pos.y - h.y / 2, pos.z - h.z / 2), h), capacity);
+    downnortheast = new OctoTree(new Box(new PVector(pos.x + h.x / 2, pos.y + h.y / 2, pos.z - h.z / 2), h), capacity);
+    downsouthwest = new OctoTree(new Box(new PVector(pos.x - h.x / 2, pos.y - h.y / 2, pos.z - h.z / 2), h), capacity);
+    downsoutheast = new OctoTree(new Box(new PVector(pos.x - h.x / 2, pos.y + h.y / 2, pos.z - h.z / 2), h), capacity);
     
     divided = true;
     
@@ -69,10 +70,12 @@ class OctoTree
         downsoutheast.Insert(p);
       }
     }
+    
+    //points = null;
   }
   
   void Insert(PVector point)
-  {
+  { //<>//
     if (!boundaries.Contains(point)) return;
     
     if (points.size() < capacity)
@@ -111,12 +114,12 @@ class OctoTree
     }
     else
     {
-      stroke(0, map(points.size(), 0, capacity, 0, 255), map(points.size(), 0, capacity, 255, 0));
+      stroke(0, map(points.size(), 0, capacity, 0, 255), 255);
       if (!root) 
       {
-        translate(-boundaries.position.x / 2, -boundaries.position.y / 2, -boundaries.position.z / 2);
+        translate(-boundaries.position.x, -boundaries.position.y, -boundaries.position.z);
         box(boundaries.dimensions.x, boundaries.dimensions.y, boundaries.dimensions.z);
-        translate(boundaries.position.x / 2, boundaries.position.y / 2, boundaries.position.z / 2);
+        translate(boundaries.position.x, boundaries.position.y, boundaries.position.z);
       }
       else
       {

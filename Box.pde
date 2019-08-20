@@ -11,11 +11,11 @@ class Box
   
   boolean Contains(PVector p)
   {
-    return (p.x >= position.x - dimensions.x &&
-    p.x < position.x + dimensions.x &&
-    p.y >= position.y - dimensions.y &&
-    p.y < position.y + dimensions.y &&
-    p.z >= position.z - dimensions.z &&
-    p.z < position.z + dimensions.z);
+    return (p.x >= position.x - dimensions.x / 2 &&
+    p.x < position.x + dimensions.x / 2 &&
+    p.y >= position.y - dimensions.y / 2 &&
+    p.y < position.y + dimensions.y / 2 &&
+    p.z >= position.z - dimensions.z / 2 &&
+    p.z < position.z + dimensions.z / 2);
   }
 }
